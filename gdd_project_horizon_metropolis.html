@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GDD - Project Horizon: Metropolis</title>
+    <style>
+        :root {
+            --bg-principal: #0b0f19;
+            --bg-card: #151f32;
+            --bg-codigo: #070a12;
+            --texto-principal: #f1f5f9;
+            --texto-secundario: #94a3b8;
+            --accent: #38bdf8;
+            --accent-muted: #818cf8;
+            --borda: #1e293b;
+            --sucesso: #34d399;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: var(--bg-principal);
+            color: var(--texto-principal);
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 3rem 1.5rem;
+            background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%);
+            border: 1px solid var(--borda);
+            border-radius: 12px;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+
+        header h1 span {
+            color: var(--accent);
+        }
+
+        header .subtitle {
+            color: var(--texto-secundario);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: var(--texto-secundario);
+        }
+
+        .meta-item strong {
+            color: var(--texto-principal);
+        }
+
+        section {
+            background-color: var(--bg-card);
+            border: 1px solid var(--borda);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--accent-muted);
+            padding-left: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            color: #fff;
+            margin: 1.5rem 0 0.75rem 0;
+        }
+
+        p {
+            color: var(--texto-secundario);
+            margin-bottom: 1rem;
+        }
+
+        ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--texto-secundario);
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        strong {
+            color: #fff;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        th, td {
+            padding: 10px 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--borda);
+        }
+
+        th {
+            background-color: rgba(56, 189, 248, 0.1);
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+
+        .badge {
+            background-color: rgba(56, 189, 248, 0.15);
+            color: var(--accent);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        pre {
+            background-color: var(--bg-codigo);
+            border: 1px solid var(--borda);
+            padding: 1.2rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+
+        code {
+            font-family: 'Fira Code', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+            font-size: 0.9rem;
+            color: #e2e8f0;
+        }
+
+        .keyword { color: #f43f5e; }
+        .type { color: #60a5fa; }
+        .comment { color: #64748b; font-style: italic; }
+        .string { color: #34d399; }
+        .macro { color: #c084fc; }
+
+        .map-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .map-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--borda);
+            padding: 1rem;
+            border-radius: 8px;
+        }
+
+        .map-card h4 {
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        footer {
+            text-align: center;
+            color: var(--texto-secundario);
+            font-size: 0.85rem;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--borda);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Project Horizon: <span>Metropolis</span></h1>
+        <div class="subtitle">Documento de Game Design (GDD) & Arquitetura Técnica</div>
+        <p>Documentação conceitual para o simulador de mundo aberto fotorrealista de próxima geração.</p>
+        
+        <div class="meta-grid">
+            <div class="meta-item"><strong>Status:</strong> Em Prototipagem</div>
+            <div class="meta-item"><strong>Engine:</strong> Unreal Engine 5.5+</div>
+            <div class="meta-item"><strong>Target API:</strong> DirectX 12 Agility / Vulkan</div>
+            <div class="meta-item"><strong>Resolução:</strong> 4K Nativo / DLSS 4 / FSR 4</div>
+        </div>
+    </header>
+
+    <section id="visao-geral">
+        <h2>1. Visão Geral do Projeto</h2>
+        <p><strong>Project Horizon: Metropolis</strong> é um jogo original de ação e aventura em ambiente <em>sandbox</em> de última geração. O projeto foca no fotorrealismo extremo, simulação sistêmica viva e interações orgânicas, sem qualquer reaproveitamento ou violação de propriedade intelectual de marcas existentes.</p>
+        <p>O coração do jogo reside na convergência entre fidelidade visual cinematográfica (via Hardware Ray Tracing integral) e uma infraestrutura de Inteligência Artificial massiva que dita o ritmo da cidade de <strong>Aethelgard</strong>.</p>
+    </section>
+
+    <section id="pilares-tecnicos">
+        <h2>2. Pilares Tecnológicos (Fotorrealismo & Performance)</h2>
+        <p>Para atingir o padrão visual AAA moderno, a pipeline de renderização utiliza tecnologias de ponta integradas nativamente:</p>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Tecnologia</th>
+                    <th>Implementação Sistêmica</th>
+                    <th>Impacto na Experiência</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Full Path Tracing (RTX)</strong></td>
+                    <td>Iluminação global, reflexos em superfícies curvas e refração de vidros calculados em tempo real.</td>
+                    <td>Iluminação fisicamente correta. Interiores e exteriores misturam-se perfeitamente sem transições de luz estáticas.</td>
+                </tr>
+                <tr>
+                    <td><strong>Nanite Geometry</strong></td>
+                    <td>Geometria virtualizada micro-poligonal para malhas de edifícios, veículos e relevos naturais.</td>
+                    <td>Eliminação completa de Pop-in de texturas ou modelos (LODs), permitindo horizontes de visão infinitos em 4K.</td>
+                </tr>
+                <tr>
+                    <td><strong>Clima Dinâmico Volumétrico</strong></td>
+                    <td>Nuvens computadas via Ray-Marching, acúmulo físico de poças de água baseado na rugosidade do asfalto.</td>
+                    <td>A chuva altera o coeficiente de fricção dos pneus e gera reflexos dinâmicos em tempo real em todas as superfícies da metrópole.</td>
+                </tr>
+                <tr>
+                    <td><strong>Chaos Physics & Deformação</strong></td>
+                    <td>Cálculo de vetores de impacto estrutural para ligas metálicas, vidros temperados e tecidos.</td>
+                    <td>Os veículos sofrem deformações realistas sem scripts pré-definidos. Elementos do cenário reagem ao peso e à velocidade.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section id="divisao-mapa">
+        <h2>3. O Mundo de Aethelgard</h2>
+        <p>Um mapa massivo que transiciona de forma fluida (sem telas de carregamento) entre ecossistemas urbanos e rurais complexos:</p>
+        
+        <div class="map-grid">
+            <div class="map-card">
+                <h4>Centro (Downtown)</h4>
+                <p>Megas-estruturas espelhadas, tráfego verticalizado, ruelas densas e lobbies corporativos totalmente exploráveis.</p>
+            </div>
+            <div class="map-card">
+                <h4>Zona Industrial (The Docks)</h4>
+                <p>Zonas portuárias, refinarias, fumaça volumétrica densa e centros logísticos com alto nível de destruição física.</p>
+            </div>
+            <div class="map-card">
+                <h4>Cinturão Verde (The Ridges)</h4>
+                <p>Montanhas escarpadas, estradas sinuosas de terra, simulação de lama, florestas densas e clima de névoa persistente.</p>
+            </div>
+            <div class="map-card">
+                <h4>Costa (The Shallows)</h4>
+                <p>Praias de areia deformável com física de fluidos avançada na quebra das ondas, iates e resorts de alto luxo.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="arquitetura-tecnica">
+        <h2>4. Arquitetura Técnica: IA e Tráfego (C++ Conceitual)</h2>
+        <p>Abaixo está a especificação da arquitetura do gerenciador de entidades urbanas (<em>Mass Entity System</em>) em C++ para gerenciar o tráfego inteligente e otimizar os recursos do Ray Tracing:</p>
+
+<pre><code><span class="comment">// HorizonTrafficManager.h - Gerenciador de Tráfego Sistêmico</span>
+<span class="macro">#pragma once</span>
+<span class="macro">#include "CoreMinimal.h"</span>
+<span class="macro">#include "GameFramework/Actor.h"</span>
+<span class="macro">#include "HorizonTrafficManager.generated.h"</span>
+
+<span class="keyword">UCLASS</span>()
+<span class="keyword">class</span> HORIZON_API <span class="type">AHorizonTrafficManager</span> : <span class="keyword">public</span> <span class="type">AActor</span>
+{
+    <span class="macro">GENERATED_BODY</span>()
+    
+<span class="keyword">public</span>:    
+    <span class="type">AHorizonTrafficManager</span>();
+
+<span class="keyword">protected</span>:
+    <span class="keyword">virtual void</span> <span class="type">BeginPlay</span>() <span class="keyword">override</span>;
+
+<span class="keyword">public</span>:    
+    <span class="keyword">virtual void</span> <span class="type">Tick</span>(<span class="keyword">float</span> DeltaTime) <span class="keyword">override</span>;
+
+    <span class="comment">// Altera a densidade populacional e de veículos organicamente baseado no tempo</span>
+    <span class="keyword">UFUNCTION</span>(<span class="type">BlueprintCallable</span>, <span class="type">Category</span> = <span class="string">"Horizon|AI"</span>)
+    <span class="keyword">void</span> <span class="type">UpdateDynamicDensity</span>(<span class="keyword">float</span> CurrentHour);
+
+<span class="keyword">private</span>:
+    <span class="keyword">UPROPERTY</span>(<span class="type">EditAnywhere</span>, <span class="type">Category</span> = <span class="string">"AI Settings"</span>)
+    <span class="type">int32</span> MaxActiveAgents;
+
+    <span class="keyword">UPROPERTY</span>(<span class="type">EditAnywhere</span>, <span class="type">Category</span> = <span class="string">"Performance Optimization"</span>)
+    <span class="keyword">float</span> RTCullingDistance; <span class="comment">// Distância limite para aplicação de estruturas de aceleração RT complexas</span>
+};
+</code></pre>
+
+<pre><code><span class="comment">// HorizonTrafficManager.cpp - Implementação dos algoritmos de simulação</span>
+<span class="macro">#include "HorizonTrafficManager.h"</span>
+
+<span class="type">AHorizonTrafficManager</span>::<span class="type">AHorizonTrafficManager</span>()
+{
+    <span class="type">PrimaryActorTick</span>.<span class="type">bCanEverTick</span> = <span class="keyword">true</span>;
+    <span class="type">MaxActiveAgents</span> = <span class="type">1000</span>;
+    <span class="type">RTCullingDistance</span> = <span class="type">15000.0f</span>; <span class="comment">// 150 metros de raio de fidelidade total</span>
+}
+
+<span class="keyword">void</span> <span class="type">AHorizonTrafficManager</span>::<span class="type">BeginPlay</span>()
+{
+    <span class="keyword">Super</span>::<span class="type">BeginPlay</span>();
+    <span class="type">UE_LOG</span>(<span class="type">LogTemp</span>, <span class="type">Log</span>, <span class="type">TEXT</span>(<span class="string">"Sistema de Tráfego Massivo Inicializado para Resolução 4K."</span>));
+}
+
+<span class="keyword">void</span> <span class="type">AHorizonTrafficManager</span>::<span class="type">UpdateDynamicDensity</span>(<span class="keyword">float</span> CurrentHour)
+{
+    <span class="comment">// Simulação lógica do ciclo comercial da metrópole</span>
+    <span class="keyword">if</span> (<span class="type">CurrentHour</span> >= <span class="type">7.5f</span> && <span class="type">CurrentHour</span> <= <span class="type">9.5f</span>) {
+        <span class="type">MaxActiveAgents</span> = <span class="type">1200</span>; <span class="comment">// Horário de pico</span>
+    } <span class="keyword">else</span> <span class="keyword">if</span> (<span class="type">CurrentHour</span> >= <span class="type">23.0f</span> || <span class="type">CurrentHour</span> <= <span class="type">4.0f</span>) {
+        <span class="type">MaxActiveAgents</span> = <span class="type">200</span>;  <span class="comment">// Madrugada</span>
+    }
+}
+
+<span class="keyword">void</span> <span class="type">AHorizonTrafficManager</span>::<span class="type">Tick</span>(<span class="keyword">float</span> DeltaTime)
+{
+    <span class="keyword">Super</span>::<span class="type">Tick</span>(<span class="type">DeltaTime</span>);
+    <span class="comment">// Execução paralela via Worker Threads das diretrizes de movimentação e desvio de obstáculos dos pedestres</span>
+}
+</code></pre>
+    </section>
+
+    <section id="sistemas-gameplay">
+        <h2>5. Sistemas de Gameplay Integrados</h2>
+        <ul>
+            <li><strong>Variedade de Vetores de Transporte:</strong> Controle nativo com curvas de torque reais para supercarros, motocicletas esportivas, lanchas com física de flutuabilidade de ondas, helicópteros de turbina dupla e jatos executivos.</li>
+            <li><strong>Economia Baseada em Cadeia de Suprimentos:</strong> Mercado financeiro simulado in-game. Eventos no mundo (ex: um carregamento industrial interceptado) alteram o valor de ações e commodities nas lojas da cidade.</li>
+            <li><strong>Combate de Alta Precisão:</strong> Balística realista com cálculo de penetração de projéteis (Penetration Layers) em diferentes materiais como chapas de metal, madeira e vidros à prova de balas.</li>
+            <li><strong>Sistema de Resposta Policial Adaptativo:</strong> A polícia local responde dinamicamente utilizando táticas de cerco reais, bloqueios de estradas monitorados por satélite in-game e IA tática coordenada.</li>
+        </ul>
+    </section>
+</div>
+
+<footer>
+    <p>&copy; 2026 Project Horizon Studio. Documentação estritamente confidencial para fins de desenvolvimento conceitual AAA.</p>
+</footer>
+
+</body>
+</html>
